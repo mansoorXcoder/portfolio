@@ -1,0 +1,5 @@
+Sure — search these exact phrases:
+
+* **ESLint — JavaScript/React code linting tool**
+* **Oxlint — fast JavaScript/TypeScript linter**
+* **ESLint vs Oxlint — differences and comparison**
