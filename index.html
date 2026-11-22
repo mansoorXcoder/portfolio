@@ -129,6 +129,14 @@
       animation: popIn 0.16s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
+    /* Mobile / WebView Reading Selection Guard: Suppress native OS callout bar while keeping text selectable */
+    .reader-selectable-area {
+      -webkit-user-select: text;
+      user-select: text;
+      -webkit-touch-callout: none !important;
+      touch-action: manipulation;
+    }
+
     /* 3D Flashcard Flip */
     .perspective-1000 {
       perspective: 1000px;
@@ -427,7 +435,7 @@
 
       <!-- MAIN READING CANVAS (Single tap in center toggles HUD; text selectable) -->
       <div id="reader-scroll-container" onclick="handleReaderCanvasTap(event)"
-        class="flex-1 overflow-y-auto overflow-x-hidden px-6 sm:px-7 pt-10 pb-14 select-text cursor-text">
+        class="reader-selectable-area flex-1 overflow-y-auto overflow-x-hidden px-6 sm:px-7 pt-10 pb-14 select-text cursor-text">
 
         <!-- Reflowable Text / HTML Container (Books, Novels, Light Novels, DOCX, EPUB) -->
         <article id="reader-text-content" class="max-w-prose mx-auto font-serif-reader transition-all duration-150"
@@ -1945,10 +1953,12 @@
     // =========================================================================
     // PILLAR 3: WORD SELECTION & FLOATING TOOLBAR + notes/<Book Name>/ SAVING
     // =========================================================================
-    document.addEventListener("selectionchange", () => {
+    let selectionDebounceTimer = null;
+
+    function processActiveSelection() {
       if (!state.reader.isOpen) return;
       const sel = window.getSelection();
-      if (!sel || sel.isCollapsed) {
+      if (!sel || sel.isCollapsed || sel.rangeCount === 0) {
         return;
       }
 
@@ -1968,7 +1978,7 @@
         page: state.reader.pageIndex + 1
       };
 
-      // Position floating toolbar cleanly above selection
+      // Position floating toolbar cleanly below selection
       try {
         const range = sel.getRangeAt(0);
         const rect = range.getBoundingClientRect();
@@ -1978,6 +1988,12 @@
       } catch (e) {
         // Ignore transient range errors on touch drag
       }
+    }
+
+    document.addEventListener("selectionchange", () => {
+      if (!state.reader.isOpen) return;
+      clearTimeout(selectionDebounceTimer);
+      selectionDebounceTimer = setTimeout(processActiveSelection, 90);
     });
 
     function extractSentenceContaining(paragraphText, targetPhrase) {
@@ -1992,18 +2008,20 @@
       const shellRect = document.getElementById("app-shell").getBoundingClientRect();
 
       toolbar.classList.remove("hidden");
-      const toolbarHeight = toolbar.offsetHeight || 40;
+      const toolbarHeight = toolbar.offsetHeight || 42;
       const toolbarWidth = toolbar.offsetWidth || 310;
 
-      // Calculate position relative to app-shell
+      // Clamp horizontally inside viewport
       let left = (rect.left - shellRect.left) + (rect.width / 2);
-      const minLeft = (toolbarWidth / 2) + 10;
-      const maxLeft = shellRect.width - (toolbarWidth / 2) - 10;
+      const minLeft = (toolbarWidth / 2) + 12;
+      const maxLeft = shellRect.width - (toolbarWidth / 2) - 12;
       left = Math.max(minLeft, Math.min(maxLeft, left));
 
-      let top = (rect.top - shellRect.top) - toolbarHeight - 10;
-      if (top < 12) {
-        top = (rect.bottom - shellRect.top) + 10;
+      // Place cleanly BELOW the selection (rect.bottom + 14px) to clear Android/iOS selection handles;
+      // flip above only if near the very bottom of the screen
+      let top = (rect.bottom - shellRect.top) + 14;
+      if (top + toolbarHeight > shellRect.height - 24) {
+        top = Math.max(14, (rect.top - shellRect.top) - toolbarHeight - 14);
       }
 
       toolbar.style.left = `${left}px`;
@@ -2664,6 +2682,22 @@
       loadState();
       renderLibrary();
       lucide.createIcons();
+
+      // Suppress Android Chrome / Mobile WebView native context menu bar on the reading canvas
+      const readerScrollEl = document.getElementById("reader-scroll-container");
+      if (readerScrollEl) {
+        readerScrollEl.addEventListener("contextmenu", (e) => {
+          e.preventDefault();
+        });
+        readerScrollEl.addEventListener("touchend", () => {
+          clearTimeout(selectionDebounceTimer);
+          selectionDebounceTimer = setTimeout(processActiveSelection, 110);
+        }, { passive: true });
+        readerScrollEl.addEventListener("mouseup", () => {
+          clearTimeout(selectionDebounceTimer);
+          selectionDebounceTimer = setTimeout(processActiveSelection, 60);
+        });
+      }
     });
   </script>
 </body>
