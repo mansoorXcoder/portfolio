@@ -115,7 +115,7 @@
       font-weight: 500;
     }
 
-    /* NOTE-ONLY UNDERLINE MODE (Quick Save / Add to Note — clean underline, NO background highlight) */
+    /* NOTE-ONLY UNDERLINE MODE */
     .vocab-highlight[data-style-mode="underline"] {
       background-color: transparent !important;
       padding: 0 1px;
@@ -156,7 +156,7 @@
       text-shadow: none;
     }
 
-    /* HIGHLIGHT MODE (Explicit Highlight action — background color fill + border) */
+    /* HIGHLIGHT MODE */
     .theme-light .vocab-highlight[data-style-mode="highlight"][data-hl-cat="word"],
     .theme-sepia .vocab-highlight[data-style-mode="highlight"][data-hl-cat="word"] {
       background-color: var(--hl-word-bg-light, rgba(253, 224, 71, 0.45));
@@ -205,8 +205,7 @@
       color: #2C241B;
     }
     #app-shell.app-theme-sepia #system-status-bar,
-    #app-shell.app-theme-sepia header,
-    #app-shell.app-theme-sepia nav {
+    #app-shell.app-theme-sepia header {
       background-color: #F4EBDC;
       border-color: #E6DCC8;
       color: #2C241B;
@@ -231,8 +230,7 @@
       border-color: #232936;
     }
     #app-shell.app-theme-dark #system-status-bar,
-    #app-shell.app-theme-dark header,
-    #app-shell.app-theme-dark nav {
+    #app-shell.app-theme-dark header {
       background-color: #171B24;
       border-color: #232936;
       color: #E4E7EC;
@@ -283,8 +281,7 @@
       border-color: #27272A;
     }
     #app-shell.app-theme-oled #system-status-bar,
-    #app-shell.app-theme-oled header,
-    #app-shell.app-theme-oled nav {
+    #app-shell.app-theme-oled header {
       background-color: #000000;
       border-color: #1F1F23;
       color: #E4E4E7;
@@ -327,6 +324,137 @@
       background-color: rgba(245, 158, 11, 0.14) !important;
       border-color: rgba(245, 158, 11, 0.28) !important;
       color: #FCD34D !important;
+    }
+
+    /* ===================================================================== */
+    /* CUSTOMIZABLE BOTTOM NAVIGATION BAR LAYOUTS (6 STYLES)                 */
+    /* ===================================================================== */
+    #bottom-nav-bar {
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* 01. Minimal Clean (Default flush bar) */
+    #bottom-nav-bar.nav-layout-minimal {
+      height: 64px;
+      margin: 0;
+      border-radius: 0;
+      background-color: #FFFFFF;
+      border-top: 1px solid rgba(228, 228, 231, 0.85);
+      padding: 0 8px;
+    }
+    #app-shell.app-theme-sepia #bottom-nav-bar.nav-layout-minimal { background-color: #F4EBDC; border-color: #E6DCC8; }
+    #app-shell.app-theme-dark #bottom-nav-bar.nav-layout-minimal { background-color: #171B24; border-color: #232936; }
+    #app-shell.app-theme-oled #bottom-nav-bar.nav-layout-minimal { background-color: #000000; border-color: #1F1F23; }
+
+    /* 02. Glassmorphism (Frosted translucent bar) */
+    #bottom-nav-bar.nav-layout-glass {
+      position: absolute;
+      bottom: 10px;
+      left: 12px;
+      right: 12px;
+      height: 62px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(238, 242, 255, 0.72));
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      box-shadow: 0 10px 28px rgba(79, 70, 229, 0.14);
+      padding: 0 10px;
+    }
+    #app-shell.app-theme-dark #bottom-nav-bar.nav-layout-glass,
+    #app-shell.app-theme-oled #bottom-nav-bar.nav-layout-glass {
+      background: linear-gradient(135deg, rgba(30, 36, 54, 0.78), rgba(18, 22, 34, 0.75));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+    }
+
+    /* 03. Floating Detached (Elevated capsule) */
+    #bottom-nav-bar.nav-layout-floating {
+      position: absolute;
+      bottom: 12px;
+      left: 14px;
+      right: 14px;
+      height: 62px;
+      border-radius: 9999px;
+      background-color: #FFFFFF;
+      border: 1px solid rgba(228, 228, 231, 0.9);
+      box-shadow: 0 12px 30px -6px rgba(9, 9, 11, 0.16), 0 4px 10px -2px rgba(9, 9, 11, 0.06);
+      padding: 0 14px;
+    }
+    #app-shell.app-theme-sepia #bottom-nav-bar.nav-layout-floating { background-color: #FFFDF8; border-color: #E6DCC8; }
+    #app-shell.app-theme-dark #bottom-nav-bar.nav-layout-floating { background-color: #1E2433; border-color: #2F3950; box-shadow: 0 12px 30px rgba(0,0,0,0.65); }
+    #app-shell.app-theme-oled #bottom-nav-bar.nav-layout-floating { background-color: #121216; border-color: #27272A; box-shadow: 0 12px 30px rgba(0,0,0,0.85); }
+
+    /* 04. Pill Highlight (Soft tinted pill around active tab) */
+    #bottom-nav-bar.nav-layout-pill {
+      height: 66px;
+      background-color: #FFFFFF;
+      border-top: 1px solid rgba(228, 228, 231, 0.85);
+      padding: 0 10px;
+    }
+    #app-shell.app-theme-sepia #bottom-nav-bar.nav-layout-pill { background-color: #F4EBDC; border-color: #E6DCC8; }
+    #app-shell.app-theme-dark #bottom-nav-bar.nav-layout-pill { background-color: #171B24; border-color: #232936; }
+    #app-shell.app-theme-oled #bottom-nav-bar.nav-layout-pill { background-color: #000000; border-color: #1F1F23; }
+    #bottom-nav-bar.nav-layout-pill .nav-tab-active {
+      background-color: rgba(99, 102, 241, 0.14) !important;
+      color: #4F46E5 !important;
+      border-radius: 16px;
+      padding-left: 14px;
+      padding-right: 14px;
+    }
+    #app-shell.app-theme-dark #bottom-nav-bar.nav-layout-pill .nav-tab-active,
+    #app-shell.app-theme-oled #bottom-nav-bar.nav-layout-pill .nav-tab-active {
+      background-color: rgba(129, 140, 248, 0.2) !important;
+      color: #A5B4FC !important;
+    }
+
+    /* 05. Gradient Bold (Vibrant indigo-to-violet curved bar) */
+    #bottom-nav-bar.nav-layout-gradient {
+      position: absolute;
+      bottom: 10px;
+      left: 12px;
+      right: 12px;
+      height: 62px;
+      border-radius: 24px;
+      background: linear-gradient(95deg, #4F46E5 0%, #7C3AED 55%, #EC4899 100%);
+      border: none;
+      box-shadow: 0 12px 28px -4px rgba(124, 58, 237, 0.42);
+      padding: 0 12px;
+    }
+    #bottom-nav-bar.nav-layout-gradient .nav-tab-btn {
+      color: rgba(255, 255, 255, 0.68) !important;
+    }
+    #bottom-nav-bar.nav-layout-gradient .nav-tab-active {
+      color: #FFFFFF !important;
+      background-color: rgba(255, 255, 255, 0.18);
+      border-radius: 14px;
+    }
+
+    /* 06. Dock Style (iOS Inspired frosted pill dock) */
+    #bottom-nav-bar.nav-layout-dock {
+      position: absolute;
+      bottom: 12px;
+      left: 18px;
+      right: 18px;
+      height: 60px;
+      border-radius: 26px;
+      background-color: rgba(244, 244, 245, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(212, 212, 216, 0.7);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      padding: 0 12px;
+    }
+    #app-shell.app-theme-sepia #bottom-nav-bar.nav-layout-dock { background-color: rgba(239, 229, 211, 0.9); border-color: #D6C7B2; }
+    #app-shell.app-theme-dark #bottom-nav-bar.nav-layout-dock { background-color: rgba(30, 36, 51, 0.88); border-color: rgba(255,255,255,0.1); }
+    #app-shell.app-theme-oled #bottom-nav-bar.nav-layout-dock { background-color: rgba(24, 24, 29, 0.9); border-color: rgba(255,255,255,0.12); }
+    #bottom-nav-bar.nav-layout-dock .nav-tab-active {
+      transform: translateY(-2px) scale(1.05);
+      color: #4F46E5 !important;
+    }
+    #app-shell.app-theme-dark #bottom-nav-bar.nav-layout-dock .nav-tab-active,
+    #app-shell.app-theme-oled #bottom-nav-bar.nav-layout-dock .nav-tab-active {
+      color: #818CF8 !important;
     }
 
     /* Selection Popover Animation */
@@ -387,13 +515,10 @@
     <!-- Simulated Mobile Status Bar (AUTOMATICALLY HIDDEN in Full-Screen Reading Mode) -->
     <div id="system-status-bar" class="h-7 px-6 pt-1.5 flex items-center justify-between text-[11px] font-semibold text-zinc-800 bg-white shrink-0 z-30 transition-all duration-200">
       <span id="status-clock">18:10</span>
-      <div class="flex items-center gap-1.5">
-        <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[9px] font-bold">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>OFFLINE
-        </span>
-        <i data-lucide="wifi" class="w-3 h-3 text-zinc-700"></i>
-        <i data-lucide="battery-charging" class="w-3.5 h-3.5 text-zinc-800"></i>
-      </div>
+      <button onclick="switchMainTab('settings')" title="View Storage Usage" class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-700 text-[10px] font-mono font-bold transition">
+        <i data-lucide="hard-drive" class="w-3 h-3 text-indigo-600"></i>
+        <span id="status-storage-pill">0 KB</span>
+      </button>
     </div>
 
     <!-- Subtle Bottom-Anchored Toast Notification Container -->
@@ -609,6 +734,107 @@
             </div>
           </div>
 
+          <!-- Bottom Navigation Bar Layout Switcher (6 Visual Layouts) -->
+          <div class="p-4 rounded-2xl bg-white border border-zinc-200/80 space-y-3">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-xs font-bold uppercase tracking-wider text-zinc-500">Navigation Bar Layout</h3>
+                <p class="text-[11px] text-zinc-400 mt-0.5">Switch the bottom navigation bar style anytime</p>
+              </div>
+              <span id="active-nav-layout-badge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-600">Minimal Clean</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2.5">
+              <!-- 01. Minimal Clean -->
+              <button onclick="setNavLayout('minimal')" data-nav-layout-btn="minimal"
+                class="nav-layout-btn p-2.5 rounded-xl border border-zinc-200 bg-zinc-50 text-left space-y-2 transition">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-extrabold text-zinc-900">01 Minimal Clean</span>
+                </div>
+                <div class="h-7 rounded-b-lg bg-white border-t border-zinc-200 flex items-center justify-around px-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-indigo-600"></span>
+                  <span class="w-2 h-2 rounded-full bg-zinc-300"></span>
+                  <span class="w-2 h-2 rounded-full bg-zinc-300"></span>
+                  <span class="w-2 h-2 rounded-full bg-zinc-300"></span>
+                </div>
+              </button>
+
+              <!-- 02. Glassmorphism -->
+              <button onclick="setNavLayout('glass')" data-nav-layout-btn="glass"
+                class="nav-layout-btn p-2.5 rounded-xl border border-zinc-200 bg-zinc-50 text-left space-y-2 transition">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-extrabold text-zinc-900">02 Glassmorphism</span>
+                </div>
+                <div class="h-7 rounded-xl bg-gradient-to-r from-indigo-200/80 via-purple-200/70 to-pink-200/80 border border-white flex items-center justify-around px-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-white shadow-sm"></span>
+                  <span class="w-2 h-2 rounded-full bg-white/60"></span>
+                  <span class="w-2 h-2 rounded-full bg-white/60"></span>
+                  <span class="w-2 h-2 rounded-full bg-white/60"></span>
+                </div>
+              </button>
+
+              <!-- 03. Floating Detached -->
+              <button onclick="setNavLayout('floating')" data-nav-layout-btn="floating"
+                class="nav-layout-btn p-2.5 rounded-xl border border-zinc-200 bg-zinc-50 text-left space-y-2 transition">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-extrabold text-zinc-900">03 Floating Pill</span>
+                </div>
+                <div class="h-7 px-1 flex items-center">
+                  <div class="w-full h-5 rounded-full bg-white shadow-md border border-zinc-200 flex items-center justify-around px-2">
+                    <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+                    <span class="w-2 h-2 rounded-full bg-zinc-300"></span>
+                    <span class="w-2 h-2 rounded-full bg-zinc-300"></span>
+                    <span class="w-2 h-2 rounded-full bg-zinc-300"></span>
+                  </div>
+                </div>
+              </button>
+
+              <!-- 04. Pill Highlight -->
+              <button onclick="setNavLayout('pill')" data-nav-layout-btn="pill"
+                class="nav-layout-btn p-2.5 rounded-xl border border-zinc-200 bg-zinc-50 text-left space-y-2 transition">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-extrabold text-zinc-900">04 Pill Highlight</span>
+                </div>
+                <div class="h-7 rounded-b-lg bg-white border-t border-zinc-200 flex items-center justify-around px-1.5">
+                  <span class="px-2 py-1 rounded-md bg-indigo-100 flex items-center"><span class="w-2 h-2 rounded-full bg-indigo-600"></span></span>
+                  <span class="w-2 h-2 rounded-full bg-zinc-300"></span>
+                  <span class="w-2 h-2 rounded-full bg-zinc-300"></span>
+                  <span class="w-2 h-2 rounded-full bg-zinc-300"></span>
+                </div>
+              </button>
+
+              <!-- 05. Gradient Bold -->
+              <button onclick="setNavLayout('gradient')" data-nav-layout-btn="gradient"
+                class="nav-layout-btn p-2.5 rounded-xl border border-zinc-200 bg-zinc-50 text-left space-y-2 transition">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-extrabold text-zinc-900">05 Gradient Bold</span>
+                </div>
+                <div class="h-7 rounded-xl bg-gradient-to-r from-indigo-600 via-violet-600 to-pink-500 flex items-center justify-around px-2 shadow-sm">
+                  <span class="w-2.5 h-2.5 rounded-full bg-white"></span>
+                  <span class="w-2 h-2 rounded-full bg-white/55"></span>
+                  <span class="w-2 h-2 rounded-full bg-white/55"></span>
+                  <span class="w-2 h-2 rounded-full bg-white/55"></span>
+                </div>
+              </button>
+
+              <!-- 06. Dock Style (iOS) -->
+              <button onclick="setNavLayout('dock')" data-nav-layout-btn="dock"
+                class="nav-layout-btn p-2.5 rounded-xl border border-zinc-200 bg-zinc-50 text-left space-y-2 transition">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-extrabold text-zinc-900">06 Dock Style</span>
+                </div>
+                <div class="h-7 px-2 flex items-center">
+                  <div class="w-full h-5 rounded-2xl bg-zinc-200/90 border border-zinc-300/80 flex items-center justify-around px-2">
+                    <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+                    <span class="w-2 h-2 rounded-full bg-zinc-400"></span>
+                    <span class="w-2 h-2 rounded-full bg-zinc-400"></span>
+                    <span class="w-2 h-2 rounded-full bg-zinc-400"></span>
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
+
           <!-- Notification Toast Animation Selector -->
           <div class="p-4 rounded-2xl bg-white border border-zinc-200/80 space-y-3">
             <div class="flex items-center justify-between">
@@ -703,6 +929,7 @@
                 </div>
               </div>
             </div>
+          </div>
 
           <!-- Backup & Restore (JSON Format) -->
           <div class="p-4 rounded-2xl bg-white border border-zinc-200/80 space-y-3">
@@ -739,254 +966,252 @@
             <h3 class="text-xs font-bold uppercase tracking-wider text-red-600">Danger Zone</h3>
             <p class="text-xs text-zinc-500">Safely reset local storage back to default sample books or clear all saved vocabulary notes.</p>
             <button onclick="openResetModal()" class="w-full py-2.5 px-4 rounded-xl border border-red-300 bg-red-50/60 hover:bg-red-100 text-red-700 text-xs font-bold transition flex items-center justify-center gap-1.5">
-            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
-            <span>Safe Data Reset</span>
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Bottom Navigation Bar (HIDDEN while reading) -->
-    <nav id="bottom-nav-bar" class="h-16 bg-white border-t border-zinc-200/80 px-2 flex items-center justify-around shrink-0 z-20">
-      <button onclick="switchMainTab('library')" data-tab="library" class="nav-tab-btn flex flex-col items-center justify-center gap-1 py-1.5 px-3 rounded-xl text-zinc-950 font-bold">
-        <i data-lucide="book-open" class="w-5 h-5"></i>
-        <span class="text-[10px]">Library</span>
-      </button>
-      <button onclick="switchMainTab('notebook')" data-tab="notebook" class="nav-tab-btn flex flex-col items-center justify-center gap-1 py-1.5 px-3 rounded-xl text-zinc-400 font-medium">
-        <i data-lucide="folder-heart" class="w-5 h-5"></i>
-        <span class="text-[10px]">Notes</span>
-      </button>
-      <button onclick="switchMainTab('revision')" data-tab="revision" class="nav-tab-btn flex flex-col items-center justify-center gap-1 py-1.5 px-3 rounded-xl text-zinc-400 font-medium relative">
-        <i data-lucide="sparkles" class="w-5 h-5"></i>
-        <span class="text-[10px]">Revision</span>
-        <span id="nav-revision-dot" class="w-2 h-2 rounded-full bg-indigo-600 absolute top-1.5 right-3"></span>
-      </button>
-      <button onclick="switchMainTab('settings')" data-tab="settings" class="nav-tab-btn flex flex-col items-center justify-center gap-1 py-1.5 px-3 rounded-xl text-zinc-400 font-medium">
-        <i data-lucide="sliders-horizontal" class="w-5 h-5"></i>
-        <span class="text-[10px]">Settings</span>
-      </button>
-    </nav>
-  </div>
-
-  <!-- ===================================================================== -->
-  <!-- FULL-SCREEN DISTRACTION-FREE READER OVERLAY                           -->
-  <!-- ===================================================================== -->
-  <div id="reader-view" class="hidden fixed sm:absolute inset-0 z-40 flex flex-col reader-surface theme-sepia overflow-hidden">
-
-    <!-- Persistent Subtle Back Corner Pill (Visible when Top HUD is hidden) -->
-    <button id="reader-floating-back-pill" onclick="closeReader()"
-      style="top: max(12px, env(safe-area-inset-top));"
-      class="fixed sm:absolute left-3.5 z-50 flex items-center gap-1 px-3 py-1.5 rounded-full reader-hud border shadow-sm text-xs font-bold opacity-80 hover:opacity-100 active:scale-95 transition">
-      <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-      <span>Back</span>
-    </button>
-
-    <!-- Reader Top HUD (Hidden by default; toggles on center tap) -->
-    <div id="reader-top-hud"
-      style="padding-top: max(10px, env(safe-area-inset-top));"
-      class="hidden fixed sm:absolute top-0 left-0 right-0 z-50 reader-hud border-b px-3.5 pb-2.5 flex items-center justify-between gap-2 shadow-sm transition-all">
-      <button onclick="closeReader()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-black/5 hover:bg-black/10 text-xs font-bold shrink-0">
-        <i data-lucide="arrow-left" class="w-4 h-4"></i>
-        <span>Back</span>
-      </button>
-      <div class="min-w-0 flex-1 text-center">
-        <h2 id="reader-book-title" class="text-xs font-extrabold truncate">Book Title</h2>
-        <p id="reader-chapter-subtitle" class="text-[10px] opacity-65 truncate">Chapter 1</p>
-      </div>
-      <div class="flex items-center gap-1 shrink-0">
-        <button onclick="toggleReaderBookmark()" id="btn-reader-bookmark" title="Bookmark Page" class="p-2 rounded-xl hover:bg-black/5">
-          <i data-lucide="bookmark" class="w-4 h-4"></i>
-        </button>
-        <button onclick="toggleReaderDrawer('toc')" title="Contents & Bookmarks" class="p-2 rounded-xl hover:bg-black/5">
-          <i data-lucide="list" class="w-4 h-4"></i>
-        </button>
-        <button onclick="toggleReaderDrawer('search')" title="Search in Book" class="p-2 rounded-xl hover:bg-black/5">
-          <i data-lucide="search" class="w-4 h-4"></i>
-        </button>
-        <button onclick="toggleReaderDrawer('appearance')" title="Appearance & Typography" class="px-2.5 py-1.5 rounded-xl bg-black/5 hover:bg-black/10 text-xs font-extrabold">
-          Aa
-        </button>
-      </div>
-    </div>
-
-    <!-- Main Scrollable Reading Canvas -->
-    <div id="reader-scroll-container" onclick="handleReaderCanvasTap(event)" class="flex-1 overflow-y-auto px-6 sm:px-7 py-14 reader-selectable-area">
-      <div id="reader-page-content" class="max-w-prose mx-auto transition-all">
-        <!-- Rendered dynamically -->
-      </div>
-    </div>
-
-    <!-- Subtle Low-Opacity Whisper Footer (Always visible in pure reading mode) -->
-    <div id="reader-whisper-footer" class="pointer-events-none py-2 text-center text-[11px] font-medium opacity-45 shrink-0">
-      Page 1 of 1 · 0%
-    </div>
-
-    <!-- Reader Bottom Scrubber HUD (Toggles on center tap) -->
-    <div id="reader-bottom-hud" class="hidden fixed sm:absolute bottom-0 left-0 right-0 z-50 reader-hud border-t px-4 py-3 space-y-2.5 shadow-lg">
-      <div class="flex items-center gap-3">
-        <button onclick="changeReaderPage(-1)" class="p-1.5 rounded-lg bg-black/5 hover:bg-black/10">
-          <i data-lucide="chevron-left" class="w-4 h-4"></i>
-        </button>
-        <input type="range" id="reader-page-slider" min="1" max="1" value="1" oninput="jumpToReaderPage(parseInt(this.value, 10))"
-          class="flex-1 accent-indigo-600 cursor-pointer" />
-        <button onclick="changeReaderPage(1)" class="p-1.5 rounded-lg bg-black/5 hover:bg-black/10">
-          <i data-lucide="chevron-right" class="w-4 h-4"></i>
-        </button>
-      </div>
-      <div class="flex items-center justify-between text-[11px] font-semibold opacity-75">
-        <span id="reader-hud-page-label">Page 1 of 1</span>
-        <span id="reader-hud-pct-label">0% completed</span>
-      </div>
-    </div>
-
-    <!-- Reader Slide-Up Drawers (TOC/Bookmarks, In-Book Search, Aa Appearance) -->
-    <div id="reader-drawer-panel" class="hidden fixed sm:absolute bottom-0 left-0 right-0 z-50 reader-hud border-t rounded-t-3xl p-5 shadow-2xl max-h-[70vh] overflow-y-auto space-y-4">
-      <div class="flex items-center justify-between border-b border-black/10 pb-2.5">
-        <h3 id="reader-drawer-title" class="text-sm font-extrabold">Settings</h3>
-        <button onclick="closeReaderDrawer()" class="p-1.5 rounded-full bg-black/5">
-          <i data-lucide="x" class="w-4 h-4"></i>
-        </button>
-      </div>
-      <div id="reader-drawer-body" class="space-y-3"></div>
-    </div>
-
-    <!-- Floating Word Selection Micro-Toolbar -->
-    <div id="selection-floating-toolbar" class="hidden fixed z-50 -translate-x-1/2 selection-toolbar-anim">
-      <div class="flex items-center gap-1 p-1.5 rounded-2xl bg-zinc-950/95 text-white shadow-2xl border border-white/15 backdrop-blur-md">
-        <button onclick="quickSaveSelectedWord()" class="flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-[11px] font-bold whitespace-nowrap">
-          <i data-lucide="folder-plus" class="w-3.5 h-3.5"></i>
-          <span>Quick Save</span>
-        </button>
-        <button onclick="speakSelectedWord()" class="flex items-center gap-1 px-2 py-1.5 rounded-xl hover:bg-white/10 text-[11px] font-semibold whitespace-nowrap">
-          <i data-lucide="volume-2" class="w-3.5 h-3.5 text-emerald-400"></i>
-          <span>Listen</span>
-        </button>
-        <!-- Color-coded Highlight Swatches -->
-        <div class="flex items-center gap-1 px-1.5 border-l border-white/15">
-          <button onclick="highlightSelectedWord('word')" title="Highlight Word" class="w-5 h-5 rounded-full border border-white/40 flex items-center justify-center">
-            <span id="toolbar-dot-word" class="w-3.5 h-3.5 rounded-full" style="background-color: #FDE047;"></span>
-          </button>
-          <button onclick="highlightSelectedWord('quote')" title="Highlight Quote" class="w-5 h-5 rounded-full border border-white/40 flex items-center justify-center">
-            <span id="toolbar-dot-quote" class="w-3.5 h-3.5 rounded-full" style="background-color: #60A5FA;"></span>
-          </button>
-          <button onclick="highlightSelectedWord('like')" title="Highlight Like" class="w-5 h-5 rounded-full border border-white/40 flex items-center justify-center">
-            <span id="toolbar-dot-like" class="w-3.5 h-3.5 rounded-full" style="background-color: #4ADE80;"></span>
-          </button>
-        </div>
-        <button onclick="openVocabDetailSheet()" class="flex items-center gap-1 px-2 py-1.5 rounded-xl hover:bg-white/10 text-[11px] font-semibold whitespace-nowrap border-l border-white/15">
-          <i data-lucide="book-marked" class="w-3.5 h-3.5 text-amber-300"></i>
-          <span>Details</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===================================================================== -->
-  <!-- MODAL: IMPORT FILE                                                    -->
-  <!-- ===================================================================== -->
-  <div id="import-modal" class="hidden fixed sm:absolute inset-0 z-50 bg-black/60 backdrop-blur-[2px] flex items-end sm:items-center justify-center">
-    <div class="bg-white text-zinc-900 w-full sm:max-w-[400px] rounded-t-3xl sm:rounded-3xl shadow-2xl p-5 space-y-4">
-      <div class="flex items-center justify-between border-b border-zinc-100 pb-2.5">
-        <div>
-          <h3 class="text-base font-extrabold text-zinc-950">Import Offline Book</h3>
-          <p class="text-[11px] text-zinc-500">Supports PDF, DOC, DOCX, EPUB, CBZ, CBR, TXT</p>
-        </div>
-        <button onclick="closeImportModal()" class="p-1.5 rounded-full bg-zinc-100 text-zinc-500 hover:text-zinc-900">
-          <i data-lucide="x" class="w-4 h-4"></i>
-        </button>
-      </div>
-
-      <div class="space-y-3">
-        <div>
-          <label class="block text-[11px] font-bold uppercase tracking-wider text-zinc-500 mb-1">Shelf Category</label>
-          <select id="import-category-select" class="w-full px-3 py-2.5 rounded-xl border border-zinc-200 bg-zinc-50 text-xs font-bold text-zinc-900 focus:outline-none">
-            <option value="Books">Books</option>
-            <option value="Novels">Novels</option>
-            <option value="Light Novels">Light Novels</option>
-            <option value="Manga/Comics">Manga/Comics</option>
-          </select>
-        </div>
-
-        <label class="flex flex-col items-center justify-center gap-2 p-6 rounded-2xl border-2 border-dashed border-zinc-300 hover:border-indigo-500 bg-zinc-50/70 cursor-pointer transition text-center">
-          <div class="w-10 h-10 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
-            <i data-lucide="file-up" class="w-5 h-5"></i>
-          </div>
-          <span class="text-xs font-extrabold text-zinc-900">Choose File from Device</span>
-          <span class="text-[10px] text-zinc-400">Parsed 100% locally on your device</span>
-          <input type="file" id="file-import-input" accept=".pdf,.doc,.docx,.epub,.cbz,.cbr,.txt,.md" onchange="handleFileImport(event)" class="hidden" />
-        </label>
-
-        <div id="import-status-box" class="hidden flex items-center gap-2 p-3 rounded-xl bg-indigo-50 text-indigo-800 text-xs font-semibold">
-          <i data-lucide="loader-2" class="w-4 h-4 animate-spin shrink-0"></i>
-          <span id="import-status-text">Parsing file...</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===================================================================== -->
-  <!-- MODAL: VOCABULARY DETAILS & EDIT SHEET (notes/<Book Name>/)           -->
-  <!-- ===================================================================== -->
-  <div id="vocab-detail-modal" class="hidden fixed sm:absolute inset-0 z-50 bg-black/60 backdrop-blur-[2px] flex items-end sm:items-center justify-center">
-    <div class="bg-white text-zinc-900 w-full sm:max-w-[410px] rounded-t-3xl sm:rounded-3xl shadow-2xl p-5 max-h-[88vh] overflow-y-auto space-y-3.5">
-      <div class="flex items-start justify-between border-b border-zinc-100 pb-2.5">
-        <div>
-          <span id="vocab-sheet-folder-badge" class="inline-block px-2 py-0.5 rounded-md bg-indigo-50 text-indigo-700 font-mono text-[10px] font-bold">notes/Book/</span>
-          <div class="flex items-center gap-2 mt-1">
-            <h3 id="vocab-sheet-word" class="text-lg font-extrabold text-zinc-950 select-text">Word</h3>
-            <button onclick="speakText(document.getElementById('vocab-sheet-word').textContent)" class="p-1.5 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-800">
-              <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+              <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+              <span>Safe Data Reset</span>
             </button>
           </div>
         </div>
-        <button onclick="closeVocabDetailSheet()" class="p-1.5 rounded-full bg-zinc-100 text-zinc-500 hover:text-zinc-900">
-          <i data-lucide="x" class="w-4 h-4"></i>
+      </section>
+
+      <!-- Bottom Navigation Bar (HIDDEN while reading, customizable layout in Settings) -->
+      <nav id="bottom-nav-bar" class="nav-layout-minimal flex items-center justify-around shrink-0 z-20">
+        <button onclick="switchMainTab('library')" data-tab="library" class="nav-tab-btn nav-tab-active flex flex-col items-center justify-center gap-1 py-1.5 px-3 rounded-xl text-zinc-950 font-bold transition">
+          <i data-lucide="book-open" class="w-5 h-5"></i>
+          <span class="text-[10px]">Library</span>
         </button>
-      </div>
+        <button onclick="switchMainTab('notebook')" data-tab="notebook" class="nav-tab-btn flex flex-col items-center justify-center gap-1 py-1.5 px-3 rounded-xl text-zinc-400 font-medium transition">
+          <i data-lucide="folder-heart" class="w-5 h-5"></i>
+          <span class="text-[10px]">Notes</span>
+        </button>
+        <button onclick="switchMainTab('revision')" data-tab="revision" class="nav-tab-btn flex flex-col items-center justify-center gap-1 py-1.5 px-3 rounded-xl text-zinc-400 font-medium relative transition">
+          <i data-lucide="sparkles" class="w-5 h-5"></i>
+          <span class="text-[10px]">Revision</span>
+          <span id="nav-revision-dot" class="w-2 h-2 rounded-full bg-indigo-600 absolute top-1.5 right-3"></span>
+        </button>
+        <button onclick="switchMainTab('settings')" data-tab="settings" class="nav-tab-btn flex flex-col items-center justify-center gap-1 py-1.5 px-3 rounded-xl text-zinc-400 font-medium transition">
+          <i data-lucide="sliders-horizontal" class="w-5 h-5"></i>
+          <span class="text-[10px]">Settings</span>
+        </button>
+      </nav>
+    </div>
 
-      <input type="hidden" id="vocab-edit-note-id" value="" />
+    <!-- ===================================================================== -->
+    <!-- FULL-SCREEN DISTRACTION-FREE READER OVERLAY                           -->
+    <!-- ===================================================================== -->
+    <div id="reader-view" class="hidden fixed sm:absolute inset-0 z-40 flex flex-col reader-surface theme-sepia overflow-hidden">
 
-      <div class="grid grid-cols-2 gap-2">
-        <div>
-          <label class="block text-[10px] font-bold uppercase text-zinc-400 mb-1">Part of Speech</label>
-          <input type="text" id="vocab-input-pos" placeholder="e.g. Adjective" class="w-full px-3 py-2 rounded-xl border border-zinc-200 text-xs font-medium select-text" />
+      <!-- Persistent Subtle Back Corner Pill (Visible when Top HUD is hidden) -->
+      <button id="reader-floating-back-pill" onclick="closeReader()"
+        style="top: max(12px, env(safe-area-inset-top));"
+        class="fixed sm:absolute left-3.5 z-50 flex items-center gap-1 px-3 py-1.5 rounded-full reader-hud border shadow-sm text-xs font-bold opacity-80 hover:opacity-100 active:scale-95 transition">
+        <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+        <span>Back</span>
+      </button>
+
+      <!-- Reader Top HUD (Hidden by default; toggles on center tap) -->
+      <div id="reader-top-hud"
+        style="padding-top: max(10px, env(safe-area-inset-top));"
+        class="hidden fixed sm:absolute top-0 left-0 right-0 z-50 reader-hud border-b px-3.5 pb-2.5 flex items-center justify-between gap-2 shadow-sm transition-all">
+        <button onclick="closeReader()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-black/5 hover:bg-black/10 text-xs font-bold shrink-0">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i>
+          <span>Back</span>
+        </button>
+        <div class="min-w-0 flex-1 text-center">
+          <h2 id="reader-book-title" class="text-xs font-extrabold truncate">Book Title</h2>
+          <p id="reader-chapter-subtitle" class="text-[10px] opacity-65 truncate">Chapter 1</p>
         </div>
-        <div>
-          <label class="block text-[10px] font-bold uppercase text-zinc-400 mb-1">Pronunciation</label>
-          <input type="text" id="vocab-input-pron" placeholder="e.g. /ˈtæs.ɪ.tɜːn/" class="w-full px-3 py-2 rounded-xl border border-zinc-200 text-xs font-mono select-text" />
+        <div class="flex items-center gap-1 shrink-0">
+          <button onclick="toggleReaderBookmark()" id="btn-reader-bookmark" title="Bookmark Page" class="p-2 rounded-xl hover:bg-black/5">
+            <i data-lucide="bookmark" class="w-4 h-4"></i>
+          </button>
+          <button onclick="toggleReaderDrawer('toc')" title="Contents & Bookmarks" class="p-2 rounded-xl hover:bg-black/5">
+            <i data-lucide="list" class="w-4 h-4"></i>
+          </button>
+          <button onclick="toggleReaderDrawer('search')" title="Search in Book" class="p-2 rounded-xl hover:bg-black/5">
+            <i data-lucide="search" class="w-4 h-4"></i>
+          </button>
+          <button onclick="toggleReaderDrawer('appearance')" title="Appearance & Typography" class="px-2.5 py-1.5 rounded-xl bg-black/5 hover:bg-black/10 text-xs font-extrabold">
+            Aa
+          </button>
         </div>
       </div>
 
-      <div>
-        <label class="block text-[10px] font-bold uppercase text-zinc-400 mb-1">Meaning (Editable — no fabricated facts)</label>
-        <textarea id="vocab-input-meaning" rows="2" placeholder="Enter definition or leave blank to fill later..." class="w-full px-3 py-2 rounded-xl border border-zinc-200 text-xs font-medium select-text"></textarea>
+      <!-- Main Scrollable Reading Canvas -->
+      <div id="reader-scroll-container" onclick="handleReaderCanvasTap(event)" class="flex-1 overflow-y-auto px-6 sm:px-7 py-14 reader-selectable-area">
+        <div id="reader-page-content" class="max-w-prose mx-auto transition-all">
+          <!-- Rendered dynamically -->
+        </div>
       </div>
 
-      <div>
-        <label class="block text-[10px] font-bold uppercase text-zinc-400 mb-1">Usage Rules & Situation Examples</label>
-        <textarea id="vocab-input-usage" rows="2" placeholder="How is this word used in context?" class="w-full px-3 py-2 rounded-xl border border-zinc-200 text-xs font-medium select-text"></textarea>
+      <!-- Subtle Low-Opacity Whisper Footer (Always visible in pure reading mode) -->
+      <div id="reader-whisper-footer" class="pointer-events-none py-2 text-center text-[11px] font-medium opacity-45 shrink-0">
+        Page 1 of 1 · 0%
       </div>
 
-      <div>
-        <label class="block text-[10px] font-bold uppercase text-zinc-400 mb-1">Exam Formula / Pattern</label>
-        <input type="text" id="vocab-input-formula" placeholder="e.g. Subject + remain + [adj]" class="w-full px-3 py-2 rounded-xl border border-zinc-200 text-xs font-mono select-text" />
+      <!-- Reader Bottom Scrubber HUD (Toggles on center tap) -->
+      <div id="reader-bottom-hud" class="hidden fixed sm:absolute bottom-0 left-0 right-0 z-50 reader-hud border-t px-4 py-3 space-y-2.5 shadow-lg">
+        <div class="flex items-center gap-3">
+          <button onclick="changeReaderPage(-1)" class="p-1.5 rounded-lg bg-black/5 hover:bg-black/10">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+          </button>
+          <input type="range" id="reader-page-slider" min="1" max="1" value="1" oninput="jumpToReaderPage(parseInt(this.value, 10))"
+            class="flex-1 accent-indigo-600 cursor-pointer" />
+          <button onclick="changeReaderPage(1)" class="p-1.5 rounded-lg bg-black/5 hover:bg-black/10">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+        <div class="flex items-center justify-between text-[11px] font-semibold opacity-75">
+          <span id="reader-hud-page-label">Page 1 of 1</span>
+          <span id="reader-hud-pct-label">0% completed</span>
+        </div>
       </div>
 
-      <div>
-        <label class="block text-[10px] font-bold uppercase text-zinc-400 mb-1">Original Sentence & Page</label>
-        <textarea id="vocab-input-sentence" rows="2" class="w-full px-3 py-2 rounded-xl border border-zinc-200 bg-zinc-50 text-xs italic select-text"></textarea>
+      <!-- Reader Slide-Up Drawers (TOC/Bookmarks, In-Book Search, Aa Appearance) -->
+      <div id="reader-drawer-panel" class="hidden fixed sm:absolute bottom-0 left-0 right-0 z-50 reader-hud border-t rounded-t-3xl p-5 shadow-2xl max-h-[70vh] overflow-y-auto space-y-4">
+        <div class="flex items-center justify-between border-b border-black/10 pb-2.5">
+          <h3 id="reader-drawer-title" class="text-sm font-extrabold">Settings</h3>
+          <button onclick="closeReaderDrawer()" class="p-1.5 rounded-full bg-black/5">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+        <div id="reader-drawer-body" class="space-y-3"></div>
       </div>
 
-      <div class="flex gap-2 pt-1">
-        <button onclick="closeVocabDetailSheet()" class="flex-1 py-2.5 rounded-xl border border-zinc-200 text-xs font-bold text-zinc-600">Cancel</button>
-        <button onclick="saveVocabFromSheet()" class="flex-1 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold">Save to Note</button>
+      <!-- Floating Word Selection Micro-Toolbar -->
+      <div id="selection-floating-toolbar" class="hidden fixed z-50 -translate-x-1/2 selection-toolbar-anim">
+        <div class="flex items-center gap-1 p-1.5 rounded-2xl bg-zinc-950/95 text-white shadow-2xl border border-white/15 backdrop-blur-md">
+          <button onclick="quickSaveSelectedWord()" class="flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-[11px] font-bold whitespace-nowrap">
+            <i data-lucide="folder-plus" class="w-3.5 h-3.5"></i>
+            <span>Quick Save</span>
+          </button>
+          <button onclick="speakSelectedWord()" class="flex items-center gap-1 px-2 py-1.5 rounded-xl hover:bg-white/10 text-[11px] font-semibold whitespace-nowrap">
+            <i data-lucide="volume-2" class="w-3.5 h-3.5 text-emerald-400"></i>
+            <span>Listen</span>
+          </button>
+          <!-- Color-coded Highlight Swatches -->
+          <div class="flex items-center gap-1 px-1.5 border-l border-white/15">
+            <button onclick="highlightSelectedWord('word')" title="Highlight Word" class="w-5 h-5 rounded-full border border-white/40 flex items-center justify-center">
+              <span id="toolbar-dot-word" class="w-3.5 h-3.5 rounded-full" style="background-color: #FDE047;"></span>
+            </button>
+            <button onclick="highlightSelectedWord('quote')" title="Highlight Quote" class="w-5 h-5 rounded-full border border-white/40 flex items-center justify-center">
+              <span id="toolbar-dot-quote" class="w-3.5 h-3.5 rounded-full" style="background-color: #60A5FA;"></span>
+            </button>
+            <button onclick="highlightSelectedWord('like')" title="Highlight Like" class="w-5 h-5 rounded-full border border-white/40 flex items-center justify-center">
+              <span id="toolbar-dot-like" class="w-3.5 h-3.5 rounded-full" style="background-color: #4ADE80;"></span>
+            </button>
+          </div>
+          <button onclick="openVocabDetailSheet()" class="flex items-center gap-1 px-2 py-1.5 rounded-xl hover:bg-white/10 text-[11px] font-semibold whitespace-nowrap border-l border-white/15">
+            <i data-lucide="book-marked" class="w-3.5 h-3.5 text-amber-300"></i>
+            <span>Details</span>
+          </button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- ===================================================================== -->
-  <!-- MODAL: JSON BACKUP INSPECTOR                                          -->
-  <!-- ===================================================================== -->
+    <!-- ===================================================================== -->
+    <!-- MODAL: IMPORT FILE                                                    -->
+    <!-- ===================================================================== -->
+    <div id="import-modal" class="hidden fixed sm:absolute inset-0 z-50 bg-black/60 backdrop-blur-[2px] flex items-end sm:items-center justify-center">
+      <div class="bg-white text-zinc-900 w-full sm:max-w-[400px] rounded-t-3xl sm:rounded-3xl shadow-2xl p-5 space-y-4">
+        <div class="flex items-center justify-between border-b border-zinc-100 pb-2.5">
+          <div>
+            <h3 class="text-base font-extrabold text-zinc-950">Import Offline Book</h3>
+            <p class="text-[11px] text-zinc-500">Supports PDF, DOC, DOCX, EPUB, CBZ, CBR, TXT</p>
+          </div>
+          <button onclick="closeImportModal()" class="p-1.5 rounded-full bg-zinc-100 text-zinc-500 hover:text-zinc-900">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <div class="space-y-3">
+          <div>
+            <label class="block text-[11px] font-bold uppercase tracking-wider text-zinc-500 mb-1">Shelf Category</label>
+            <select id="import-category-select" class="w-full px-3 py-2.5 rounded-xl border border-zinc-200 bg-zinc-50 text-xs font-bold text-zinc-900 focus:outline-none">
+              <option value="Books">Books</option>
+              <option value="Novels">Novels</option>
+              <option value="Light Novels">Light Novels</option>
+              <option value="Manga/Comics">Manga/Comics</option>
+            </select>
+          </div>
+
+          <label class="flex flex-col items-center justify-center gap-2 p-6 rounded-2xl border-2 border-dashed border-zinc-300 hover:border-indigo-500 bg-zinc-50/70 cursor-pointer transition text-center">
+            <div class="w-10 h-10 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+              <i data-lucide="file-up" class="w-5 h-5"></i>
+            </div>
+            <span class="text-xs font-extrabold text-zinc-900">Choose File from Device</span>
+            <span class="text-[10px] text-zinc-400">Parsed 100% locally on your device</span>
+            <input type="file" id="file-import-input" accept=".pdf,.doc,.docx,.epub,.cbz,.cbr,.txt,.md" onchange="handleFileImport(event)" class="hidden" />
+          </label>
+
+          <div id="import-status-box" class="hidden flex items-center gap-2 p-3 rounded-xl bg-indigo-50 text-indigo-800 text-xs font-semibold">
+            <i data-lucide="loader-2" class="w-4 h-4 animate-spin shrink-0"></i>
+            <span id="import-status-text">Parsing file...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- MODAL: VOCABULARY DETAILS & EDIT SHEET (notes/<Book Name>/)           -->
+    <!-- ===================================================================== -->
+    <div id="vocab-detail-modal" class="hidden fixed sm:absolute inset-0 z-50 bg-black/60 backdrop-blur-[2px] flex items-end sm:items-center justify-center">
+      <div class="bg-white text-zinc-900 w-full sm:max-w-[410px] rounded-t-3xl sm:rounded-3xl shadow-2xl p-5 max-h-[88vh] overflow-y-auto space-y-3.5">
+        <div class="flex items-start justify-between border-b border-zinc-100 pb-2.5">
+          <div>
+            <span id="vocab-sheet-folder-badge" class="inline-block px-2 py-0.5 rounded-md bg-indigo-50 text-indigo-700 font-mono text-[10px] font-bold">notes/Book/</span>
+            <div class="flex items-center gap-2 mt-1">
+              <h3 id="vocab-sheet-word" class="text-lg font-extrabold text-zinc-950 select-text">Word</h3>
+              <button onclick="speakText(document.getElementById('vocab-sheet-word').textContent)" class="p-1.5 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-800">
+                <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+          <button onclick="closeVocabDetailSheet()" class="p-1.5 rounded-full bg-zinc-100 text-zinc-500 hover:text-zinc-900">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <input type="hidden" id="vocab-edit-note-id" value="" />
+
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block text-[10px] font-bold uppercase text-zinc-400 mb-1">Part of Speech</label>
+            <input type="text" id="vocab-input-pos" placeholder="e.g. Adjective" class="w-full px-3 py-2 rounded-xl border border-zinc-200 text-xs font-medium select-text" />
+          </div>
+          <div>
+            <label class="block text-[10px] font-bold uppercase text-zinc-400 mb-1">Pronunciation</label>
+            <input type="text" id="vocab-input-pron" placeholder="e.g. /ˈtæs.ɪ.tɜːn/" class="w-full px-3 py-2 rounded-xl border border-zinc-200 text-xs font-mono select-text" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[10px] font-bold uppercase text-zinc-400 mb-1">Meaning (Editable — no fabricated facts)</label>
+          <textarea id="vocab-input-meaning" rows="2" placeholder="Enter definition or leave blank to fill later..." class="w-full px-3 py-2 rounded-xl border border-zinc-200 text-xs font-medium select-text"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-[10px] font-bold uppercase text-zinc-400 mb-1">Usage Rules & Situation Examples</label>
+          <textarea id="vocab-input-usage" rows="2" placeholder="How is this word used in context?" class="w-full px-3 py-2 rounded-xl border border-zinc-200 text-xs font-medium select-text"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-[10px] font-bold uppercase text-zinc-400 mb-1">Exam Formula / Pattern</label>
+          <input type="text" id="vocab-input-formula" placeholder="e.g. Subject + remain + [adj]" class="w-full px-3 py-2 rounded-xl border border-zinc-200 text-xs font-mono select-text" />
+        </div>
+
+        <div>
+          <label class="block text-[10px] font-bold uppercase text-zinc-400 mb-1">Original Sentence & Page</label>
+          <textarea id="vocab-input-sentence" rows="2" class="w-full px-3 py-2 rounded-xl border border-zinc-200 bg-zinc-50 text-xs italic select-text"></textarea>
+        </div>
+
+        <div class="flex gap-2 pt-1">
+          <button onclick="closeVocabDetailSheet()" class="flex-1 py-2.5 rounded-xl border border-zinc-200 text-xs font-bold text-zinc-600">Cancel</button>
+          <button onclick="saveVocabFromSheet()" class="flex-1 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold">Save to Note</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
     <!-- MODAL: JSON BACKUP INSPECTOR                                          -->
     <!-- ===================================================================== -->
     <div id="json-preview-modal" class="hidden fixed sm:absolute inset-0 z-50 bg-black/60 backdrop-blur-[2px] flex items-end sm:items-center justify-center">
@@ -1046,7 +1271,15 @@
 
     const STORAGE_KEY = 'foliovault_offline_state_v1';
 
-    // Built-in Offline Dictionary (Strictly factual; unknown words remain blank & editable without inventing facts)
+    const NAV_LAYOUT_LABELS = {
+      minimal: "Minimal Clean",
+      glass: "Glassmorphism",
+      floating: "Floating Pill",
+      pill: "Pill Highlight",
+      gradient: "Gradient Bold",
+      dock: "Dock Style"
+    };
+
     const OFFLINE_DICTIONARY = {
       "taciturn": {
         pos: "Adjective",
@@ -1294,8 +1527,9 @@
       notes: [],
       activeCategory: "All",
       libraryView: "grid",
-      selectedNotebookBookName: null, // null = show Book Files overview; string = show stored words for that book
-      toastStyle: "pill", // 'pill' | 'fade' | 'bar' | 'off'
+      selectedNotebookBookName: null,
+      toastStyle: "pill",
+      navLayout: "minimal", // 'minimal' | 'glass' | 'floating' | 'pill' | 'gradient' | 'dock'
       highlightPrefs: {
         wordColor: "#FDE047",
         quoteColor: "#60A5FA",
@@ -1330,7 +1564,7 @@
     const runtimePdfDocs = {};
 
     // =========================================================================
-    // SAFE ICON RENDERER (Works offline or if external Lucide CDN is blocked)
+    // SAFE ICON RENDERER
     // =========================================================================
     const FALLBACK_SVG_PATHS = {
       "wifi": '<path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/>',
@@ -1405,6 +1639,7 @@
           state.notes = Array.isArray(parsed.notes) ? parsed.notes : createDefaultNotes();
           state.libraryView = parsed.libraryView || "grid";
           state.toastStyle = parsed.toastStyle || "pill";
+          state.navLayout = parsed.navLayout || "minimal";
           if (parsed.highlightPrefs) {
             state.highlightPrefs = { ...state.highlightPrefs, ...parsed.highlightPrefs };
           }
@@ -1429,6 +1664,7 @@
         state.notes = createDefaultNotes();
       }
       applyAppTheme();
+      applyNavLayout();
       applyHighlightColorVariables();
       syncToastStyleButtons();
       ensureDailyRevisionQueue();
@@ -1447,6 +1683,7 @@
           notes: state.notes,
           libraryView: state.libraryView,
           toastStyle: state.toastStyle,
+          navLayout: state.navLayout,
           highlightPrefs: state.highlightPrefs,
           reader: {
             theme: state.reader.theme,
@@ -1457,9 +1694,47 @@
           },
           revision: state.revision
         }));
+        updateStorageIndicators();
       } catch (e) {
         showToast("Storage warning: Export a JSON backup.", "error");
       }
+    }
+
+    // =========================================================================
+    // NAVIGATION BAR LAYOUT SWITCHER
+    // =========================================================================
+    function setNavLayout(layoutKey) {
+      state.navLayout = layoutKey;
+      applyNavLayout();
+      saveState();
+      showToast(`Nav Layout: ${NAV_LAYOUT_LABELS[layoutKey] || layoutKey}`, "info");
+    }
+
+    function applyNavLayout() {
+      const nav = document.getElementById("bottom-nav-bar");
+      if (!nav) return;
+      const layout = state.navLayout || "minimal";
+      nav.classList.remove(
+        "nav-layout-minimal",
+        "nav-layout-glass",
+        "nav-layout-floating",
+        "nav-layout-pill",
+        "nav-layout-gradient",
+        "nav-layout-dock"
+      );
+      nav.classList.add(`nav-layout-${layout}`);
+
+      const badge = document.getElementById("active-nav-layout-badge");
+      if (badge) {
+        badge.textContent = NAV_LAYOUT_LABELS[layout] || "Minimal Clean";
+      }
+
+      document.querySelectorAll(".nav-layout-btn").forEach(btn => {
+        const isCurrent = btn.getAttribute("data-nav-layout-btn") === layout;
+        btn.classList.toggle("ring-2", isCurrent);
+        btn.classList.toggle("ring-indigo-500", isCurrent);
+        btn.classList.toggle("border-indigo-400", isCurrent);
+      });
     }
 
     function applyAppTheme() {
@@ -1526,7 +1801,7 @@
 
     function applyHighlightColorVariables() {
       const root = document.documentElement;
-      const { wordColor, quoteColor, likeColor, autoWrapQuotes } = state.highlightPrefs;
+      const { wordColor, quoteColor, likeColor } = state.highlightPrefs;
 
       root.style.setProperty("--hl-word-bg-light", hexToRgba(wordColor, 0.42));
       root.style.setProperty("--hl-word-border", wordColor);
@@ -1559,11 +1834,9 @@
       const pickerW = document.getElementById("picker-color-word");
       const pickerQ = document.getElementById("picker-color-quote");
       const pickerL = document.getElementById("picker-color-like");
-      const toggleQ = document.getElementById("toggle-auto-quotes");
       if (pickerW) pickerW.value = wordColor;
       if (pickerQ) pickerQ.value = quoteColor;
       if (pickerL) pickerL.value = likeColor;
-      if (toggleQ) toggleQ.checked = !!autoWrapQuotes;
     }
 
     function updateCategoryColor(categoryKey, hexColor) {
@@ -1590,11 +1863,6 @@
       showToast("Highlight colors reset", "info");
     }
 
-    function toggleAutoQuoteWrap(checked) {
-      state.highlightPrefs.autoWrapQuotes = checked;
-      saveState();
-    }
-
     function updateClock() {
       const now = new Date();
       const el = document.getElementById("status-clock");
@@ -1603,16 +1871,16 @@
       }
     }
 
-    // Refined, Non-Intrusive Notification Engine with User-Selectable Styles
     function showToast(message, type = "success") {
       if (state.toastStyle === "off") return;
 
       const container = document.getElementById("toast-container");
-      // Replace any active toast immediately so notifications never stack or clutter
       container.innerHTML = "";
 
       const toast = document.createElement("div");
       const styleMode = state.toastStyle || "pill";
+      const currentTheme = state.reader.appTheme || "light";
+      const isLightOrSepia = currentTheme === "light" || currentTheme === "sepia";
 
       const dotColor = type === "error"
         ? "bg-red-400"
@@ -1620,15 +1888,22 @@
         ? "bg-sky-400"
         : "bg-emerald-400";
 
+      // High-contrast surface & explicit text color so Light/White theme text is always sharp and legible
+      const surfaceStyle = isLightOrSepia
+        ? "background-color: #09090B; color: #FFFFFF; border-color: rgba(255, 255, 255, 0.14);"
+        : "background-color: #F4F4F5; color: #09090B; border-color: rgba(0, 0, 0, 0.12);";
+
       if (styleMode === "bar") {
-        toast.className = "pointer-events-auto flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900/90 text-white border-l-2 border-indigo-400 shadow-md text-[11px] font-medium toast-anim-bar backdrop-blur-md";
+        toast.className = "pointer-events-auto flex items-center gap-2 px-3 py-1.5 rounded-lg border-l-2 border-indigo-500 shadow-lg text-[11px] font-semibold toast-anim-bar backdrop-blur-md";
+        toast.setAttribute("style", surfaceStyle);
         toast.innerHTML = `<span class="truncate max-w-[260px]">${escapeHtml(message)}</span>`;
       } else if (styleMode === "fade") {
-        toast.className = "pointer-events-auto flex items-center gap-2 px-3.5 py-2 rounded-full bg-zinc-900/85 text-zinc-100 shadow-md text-[11px] font-medium toast-anim-fade backdrop-blur-md";
+        toast.className = "pointer-events-auto flex items-center gap-2 px-3.5 py-2 rounded-full border shadow-lg text-[11px] font-semibold toast-anim-fade backdrop-blur-md";
+        toast.setAttribute("style", surfaceStyle);
         toast.innerHTML = `<span class="w-1.5 h-1.5 rounded-full ${dotColor} shrink-0"></span><span class="truncate max-w-[270px]">${escapeHtml(message)}</span>`;
       } else {
-        // Default: Subtle Bottom Pill
-        toast.className = "pointer-events-auto flex items-center gap-2 px-3.5 py-2 rounded-full bg-zinc-950/92 text-white border border-white/10 shadow-lg text-[11px] font-semibold toast-anim-pill backdrop-blur-md";
+        toast.className = "pointer-events-auto flex items-center gap-2 px-3.5 py-2 rounded-full border shadow-xl text-[11px] font-bold toast-anim-pill backdrop-blur-md";
+        toast.setAttribute("style", surfaceStyle);
         toast.innerHTML = `<span class="w-2 h-2 rounded-full ${dotColor} shrink-0"></span><span class="truncate max-w-[270px]">${escapeHtml(message)}</span>`;
       }
 
@@ -1661,6 +1936,7 @@
 
       document.querySelectorAll(".nav-tab-btn").forEach(btn => {
         const isCurrent = btn.getAttribute("data-tab") === tabName;
+        btn.classList.toggle("nav-tab-active", isCurrent);
         btn.classList.toggle("text-zinc-950", isCurrent);
         btn.classList.toggle("font-bold", isCurrent);
         btn.classList.toggle("text-zinc-400", !isCurrent);
@@ -1799,7 +2075,6 @@
               const noteCount = state.notes.filter(n => n.bookName === book.title).length;
               return `
                 <div onclick="openBook('${book.id}')" class="group bg-white rounded-2xl border border-zinc-200/80 overflow-hidden shadow-sm hover:shadow-md transition cursor-pointer flex flex-col">
-                  <!-- Book Cover -->
                   <div class="relative h-40 bg-gradient-to-br ${book.coverGradient || 'from-zinc-700 to-zinc-950'} p-3.5 flex flex-col justify-between text-white">
                     <div class="flex items-center justify-between">
                       <span class="px-2 py-0.5 rounded-md bg-black/40 backdrop-blur-sm text-[9px] font-extrabold tracking-wider uppercase">${escapeHtml(book.format)}</span>
@@ -1811,12 +2086,10 @@
                       <p class="text-[10px] text-white/75 font-medium truncate">${escapeHtml(book.category)}</p>
                       <h3 class="text-sm font-extrabold leading-snug line-clamp-2 mt-0.5">${escapeHtml(book.title)}</h3>
                     </div>
-                    <!-- Progress Bar -->
                     <div class="w-full h-1 bg-white/20 rounded-full overflow-hidden">
                       <div class="h-full bg-white rounded-full" style="width: ${pct}%"></div>
                     </div>
                   </div>
-                  <!-- Book Metadata -->
                   <div class="p-3 flex-1 flex flex-col justify-between">
                     <p class="text-[11px] text-zinc-500 truncate">${escapeHtml(book.author || "Local Import")}</p>
                     <div class="flex items-center justify-between mt-2 pt-2 border-t border-zinc-100 text-[10px] font-bold">
@@ -2105,12 +2378,7 @@
       }
     }
 
-    function renderSettingsStats() {
-      document.getElementById("stat-books-count").textContent = state.books.length;
-      document.getElementById("stat-notes-count").textContent = state.notes.length;
-      document.getElementById("stat-mastered-count").textContent = state.notes.filter(n => n.status === "learned").length;
-
-      // Calculate exact storage consumption breakdown
+    function updateStorageIndicators() {
       const serializableBooks = state.books.map(b => {
         const copy = { ...b };
         delete copy._pdfDoc;
@@ -2122,12 +2390,18 @@
         reader: state.reader,
         highlightPrefs: state.highlightPrefs,
         revision: state.revision,
-        toastStyle: state.toastStyle
+        toastStyle: state.toastStyle,
+        navLayout: state.navLayout
       }));
       const rawStored = localStorage.getItem(STORAGE_KEY) || "";
       const totalBytes = rawStored ? getByteLength(rawStored) : (booksBytes + notesBytes + prefsBytes);
-      const quotaBytes = 5 * 1024 * 1024; // 5 MB standard localStorage quota
+      const quotaBytes = 5 * 1024 * 1024;
       const pct = Math.min(100, Number(((totalBytes / quotaBytes) * 100).toFixed(2)));
+
+      const statusPill = document.getElementById("status-storage-pill");
+      if (statusPill) {
+        statusPill.textContent = `${formatBytes(totalBytes)} (${pct}%)`;
+      }
 
       const totalLabel = document.getElementById("storage-total-label");
       const progressBar = document.getElementById("storage-progress-bar");
@@ -2140,7 +2414,16 @@
       if (booksEl) booksEl.textContent = formatBytes(booksBytes);
       if (notesEl) notesEl.textContent = formatBytes(notesBytes);
       if (prefsEl) prefsEl.textContent = formatBytes(prefsBytes);
+    }
 
+    function renderSettingsStats() {
+      document.getElementById("stat-books-count").textContent = state.books.length;
+      document.getElementById("stat-notes-count").textContent = state.notes.length;
+      document.getElementById("stat-mastered-count").textContent = state.notes.filter(n => n.status === "learned").length;
+
+      updateStorageIndicators();
+
+      applyNavLayout();
       applyHighlightColorVariables();
       syncToastStyleButtons();
     }
@@ -2167,6 +2450,7 @@
         notes: state.notes,
         notesDirectory: notesByBookFolder,
         highlightPrefs: state.highlightPrefs,
+        navLayout: state.navLayout,
         readerSettings: state.reader
       };
 
@@ -2228,6 +2512,10 @@
           }
           state.books = data.books;
           state.notes = data.notes;
+          if (data.navLayout) {
+            state.navLayout = data.navLayout;
+            applyNavLayout();
+          }
           if (data.readerSettings) {
             state.reader = { ...state.reader, ...data.readerSettings, isOpen: false };
           }
@@ -2453,14 +2741,12 @@
       let html = escapeHtml(rawText);
       const marks = [];
 
-      // 1. Saved notes for this book -> clean underline style ("underline")
       state.notes
         .filter(n => n.bookName === book.title && n.word)
         .forEach(n => {
           marks.push({ text: n.word, cat: n.category || "word", mode: "underline" });
         });
 
-      // 2. Explicit color highlights -> background fill style ("highlight")
       (book.highlights || []).forEach(h => {
         if (typeof h === "string") {
           marks.push({ text: h, cat: "word", mode: "highlight" });
@@ -2469,7 +2755,6 @@
         }
       });
 
-      // Deduplicate preferring explicit highlight if both exist, sorted longest first
       const seen = new Map();
       marks.forEach(m => {
         const key = m.text.toLowerCase();
@@ -2575,7 +2860,6 @@
       refreshIcons();
     }
 
-    // Reader Drawers (TOC/Bookmarks, Search, Aa Settings)
     function toggleReaderDrawer(type) {
       const panel = document.getElementById("reader-drawer-panel");
       const titleEl = document.getElementById("reader-drawer-title");
@@ -2742,7 +3026,6 @@
       const toolbarWidth = toolbar.offsetWidth || 290;
       const toolbarHeight = toolbar.offsetHeight || 44;
 
-      // Position 14px below selection so mobile selection handles never overlap
       let top = rect.bottom + 14;
       if (top + toolbarHeight > window.innerHeight - 16) {
         top = Math.max(16, rect.top - toolbarHeight - 14);
@@ -2957,11 +3240,9 @@
 
       totalBadge.textContent = `${state.notes.length} ${state.notes.length === 1 ? "entry" : "entries"}`;
 
-      // View 1: Book Files Shelf (showing each book file where words are stored)
       if (!state.selectedNotebookBookName) {
         pathDisplay.textContent = "notes/ • Select a book file";
 
-        // Collect all books from Library + any orphaned bookNames in notes
         const bookMap = new Map();
         state.books.forEach(b => {
           bookMap.set(b.title, {
@@ -3034,7 +3315,6 @@
         return;
       }
 
-      // View 2: Stored Words inside notes/<Book Name>/
       const selectedBookTitle = state.selectedNotebookBookName;
       pathDisplay.textContent = `notes/${selectedBookTitle}/`;
 
@@ -3198,12 +3478,10 @@
         };
       }
 
-      // Filter out any deleted note IDs
       state.revision.dailyWordIds = (state.revision.dailyWordIds || []).filter(id =>
         state.notes.some(n => n.id === id)
       );
 
-      // Top up queue to 2 words/day prioritizing 'needs_practice'
       if (state.revision.dailyWordIds.length < 2 && state.notes.length > 0) {
         const candidates = [
           ...state.notes.filter(n => n.status !== "learned"),
@@ -3337,6 +3615,7 @@
         updateClock();
         setInterval(updateClock, 30000);
         loadState();
+        updateStorageIndicators();
         syncHomeModeButtons();
         renderLibrary();
         refreshIcons();
